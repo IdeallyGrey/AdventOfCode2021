@@ -17,10 +17,10 @@ while lineToRead <= 1999:
     lineToRead = lineToRead + 1
 
 #does the actual counting
-lineToRead = 1
-while lineToRead <= 1999:
-    current = list[lineToRead]
-    past = list[lineToRead - 1]
+lineToRead = 0
+while lineToRead <= 1997:
+    current = list[lineToRead] + list[lineToRead + 1] + list[lineToRead + 2]
+    past = list[lineToRead - 1] + list[lineToRead] + list[lineToRead + 1]
     if current > past:
         total = total + 1
     lineToRead = lineToRead + 1
