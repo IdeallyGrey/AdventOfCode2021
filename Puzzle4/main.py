@@ -1,5 +1,6 @@
 depth = 0
 distance = 0
+aim = 0
 list = []
 
 #opens file instructions and saves each line as a list entry
@@ -24,14 +25,15 @@ while lineToRead <= 999:
         x = list[lineToRead].strip("\nforward")
         x = int(x)
         distance = distance + x
+        depth = depth + (aim * x)
     if 'up' in list[lineToRead]:
         x = list[lineToRead].strip("\nup")
         x = int(x)
-        depth = depth - x
+        aim = aim - x
     if 'down' in list[lineToRead]:
         x = list[lineToRead].strip("\ndown")
         x = int(x)
-        depth = depth + x
+        aim = aim + x
 
     lineToRead = lineToRead + 1
 
