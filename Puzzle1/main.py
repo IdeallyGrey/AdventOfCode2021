@@ -1,11 +1,30 @@
-#outline:
-#takes input, puts it into list
-#var checking set to 2
-#while var checking <= total list
-    #var current set to var checking
-    #var past set to var checking - 1
-    #if var current > var past
-        #then
-            #var total = var total + 1
-    #var checking + 1
-#print var total
+total = 0
+list = []
+
+#opens file listOfDepths and saves each line as a list entry
+file = open("listOfDepths", "r")
+lineToRead = 1
+while lineToRead <= 2000:
+    list.append(file.readline())
+    lineToRead = lineToRead + 1
+
+#runs through and deletes the "\n" that is after each line
+lineToRead = 0
+while lineToRead <= 1999:
+    x = list[lineToRead].rstrip("\n")
+    x = str(x)
+    list[lineToRead] = x
+    lineToRead = lineToRead + 1
+
+#does the actual counting
+lineToRead = 1
+while lineToRead <= 1999:
+    current = list[lineToRead]
+    past = list[lineToRead - 1]
+    if current > past:
+        total = total + 1
+    lineToRead = lineToRead + 1
+
+#prints total
+print("Total:")
+print(total)
