@@ -1,4 +1,5 @@
 total = 0
+decreased = 0
 list = []
 
 #opens file listOfDepths and saves each line as a list entry
@@ -12,7 +13,7 @@ while lineToRead <= 2000:
 lineToRead = 0
 while lineToRead <= 1999:
     x = list[lineToRead].rstrip("\n")
-    x = str(x)
+    x = int(x)
     list[lineToRead] = x
     lineToRead = lineToRead + 1
 
@@ -23,8 +24,16 @@ while lineToRead <= 1999:
     past = list[lineToRead - 1]
     if current > past:
         total = total + 1
+    else:
+        decreased = decreased + 1
+        print("\n\n")
+        print(past)
+        print(current)
+        print("decreased")
     lineToRead = lineToRead + 1
 
 #prints total
-print("Total:")
+print("\n\nIncreased:")
 print(total)
+print("\nDecreased:")
+print(decreased)
