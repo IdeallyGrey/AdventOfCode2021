@@ -18,29 +18,70 @@ def importAndCleanList():
         list[rowToRead] = x
         rowToRead = rowToRead + 1
 
+def removeAllStartingWith(aString):
+    rowToRead = 0
+    while rowToRead <= len(list) - 1:
+        x = str(list[rowToRead])
+        x = x[0:1]
+        if x == aString:
+            list.pop(rowToRead)
+        else:
+            pass
+        rowToRead = rowToRead + 1
+
 # finds ogr
 importAndCleanList()
 lineToRead = 1
-while lineToRead <= 12:
+exit = 1
+while exit == 1:
     rowToRead = 0
     numberOfOnes = 0
     numberOfZeros = 0
-    while rowToRead <= 999:
+    while rowToRead <= len(list) - 1:
         x = str(list[rowToRead])
         x = x[int(lineToRead) - 1:int(lineToRead)]
         if x == "1":
             numberOfOnes = numberOfOnes + 1
         else:
             numberOfZeros = numberOfZeros + 1
-
         rowToRead = rowToRead + 1
     if numberOfOnes > numberOfZeros:
-        gammaRate = gammaRate + "1"
-        epsillonRate = epsillonRate + "0"
+        removeAllStartingWith("0")
     else:
-        gammaRate = gammaRate + "0"
-        epsillonRate = epsillonRate + "1"
+        removeAllStartingWith("1")
     lineToRead = lineToRead + 1
+    print (len(list))
+    print(list)
+    if len(list) <= 1:
+        exit = 0
+ogr = list[0]
+
+# finds csr
+importAndCleanList()
+lineToRead = 1
+exit = 1
+while exit == 1:
+    rowToRead = 0
+    numberOfOnes = 0
+    numberOfZeros = 0
+    while rowToRead <= len(list) - 1:
+        x = str(list[rowToRead])
+        x = x[int(lineToRead) - 1:int(lineToRead)]
+        if x == "1":
+            numberOfOnes = numberOfOnes + 1
+        else:
+            numberOfZeros = numberOfZeros + 1
+        rowToRead = rowToRead + 1
+    if numberOfOnes < numberOfZeros:
+        removeAllStartingWith("0")
+    else:
+        removeAllStartingWith("1")
+    lineToRead = lineToRead + 1
+    print (len(list))
+    if len(list) <= 1:
+        exit = 0
+csr = list[0]
+
 
 
 # prints output
