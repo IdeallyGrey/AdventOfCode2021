@@ -49,9 +49,11 @@ while exit == 1:
         removeAllStartingWith("0")
     else:
         removeAllStartingWith("1")
-    lineToRead = lineToRead + 1
-    print (len(list))
-    print(list)
+    if lineToRead > 8:
+        lineToRead = 1
+    else:
+        lineToRead = lineToRead + 1
+    print(len(list))
     if len(list) <= 1:
         exit = 0
 ogr = list[0]
