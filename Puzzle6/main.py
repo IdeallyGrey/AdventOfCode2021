@@ -47,9 +47,11 @@ while exit == 1:
         rowToRead = rowToRead + 1
     if numberOfOnes > numberOfZeros:
         removeAllStartingWith("0")
-    else:
+    elif numberOfOnes < numberOfZeros:
         removeAllStartingWith("1")
-    if lineToRead > 8:
+    else:
+        removeAllStartingWith("0")
+    if lineToRead > 12:
         lineToRead = 1
     else:
         lineToRead = lineToRead + 1
@@ -76,9 +78,14 @@ while exit == 1:
         rowToRead = rowToRead + 1
     if numberOfOnes < numberOfZeros:
         removeAllStartingWith("0")
+    elif numberOfOnes > numberOfZeros:
+        removeAllStartingWith("1")
     else:
         removeAllStartingWith("1")
-    lineToRead = lineToRead + 1
+    if lineToRead > 12:
+        lineToRead = 1
+    else:
+        lineToRead = lineToRead + 1
     print (len(list))
     if len(list) <= 1:
         exit = 0
