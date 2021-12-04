@@ -1,5 +1,5 @@
-numberOfOnes = 0
-numberOfZeros = 0
+numberOfOnesInThisColumn = 0
+numberOfZerosInThisColumn = 0
 ogr = ""
 csr = ""
 list = []
@@ -19,15 +19,20 @@ def importAndCleanList():
         rowToRead = rowToRead + 1
 
 def remove_All_With_X_At_Y(aString, whichColumn):
+    numberOfDeletions = 1
     rowToRead = 0
-    while rowToRead <= len(list) - 1:
-        x = str(list[rowToRead])
-        x = x[whichColumn - 1:whichColumn]
-        if x == aString:
-            list.pop(rowToRead)
-        else:
-            pass
-        rowToRead = rowToRead + 1
+    while numberOfDeletions > 0:
+        numberOfDeletions = 0
+        while rowToRead <= len(list) - 1:
+            x = str(list[rowToRead])
+            x = x[whichColumn - 1:whichColumn]
+            if x == aString:
+                list.pop(rowToRead)
+                numberOfDeletions = numberOfDeletions + 1
+            else:
+                pass
+            rowToRead = rowToRead + 1
+
 
 # finds ogr
 importAndCleanList()
@@ -35,19 +40,19 @@ columnToRead = 1
 exit = "no"
 while exit == "no":
     rowToRead = 0
-    numberOfOnes = 0
-    numberOfZeros = 0
+    numberOfOnesInThisColumn = 0
+    numberOfZerosInThisColumn = 0
     while rowToRead <= len(list) - 1:
         x = str(list[rowToRead])
         x = x[int(columnToRead) - 1:int(columnToRead)]
         if x == "1":
-            numberOfOnes = numberOfOnes + 1
+            numberOfOnesInThisColumn = numberOfOnesInThisColumn + 1
         else:
-            numberOfZeros = numberOfZeros + 1
+            numberOfZerosInThisColumn = numberOfZerosInThisColumn + 1
         rowToRead = rowToRead + 1
-    if numberOfOnes > numberOfZeros:
+    if numberOfOnesInThisColumn > numberOfZerosInThisColumn:
         remove_All_With_X_At_Y("0", columnToRead)
-    elif numberOfOnes < numberOfZeros:
+    elif numberOfOnesInThisColumn < numberOfZerosInThisColumn:
         remove_All_With_X_At_Y("1", columnToRead)
     else:
         remove_All_With_X_At_Y("0", columnToRead)
@@ -55,8 +60,8 @@ while exit == "no":
         columnToRead = 1
     else:
         columnToRead = columnToRead + 1
-    print("")
-    print(list)
+    #print("")
+    #print(list)
     if len(list) <= 1:
         exit = "yes"
 ogr = list[0]
@@ -64,22 +69,22 @@ ogr = list[0]
 # finds csr
 importAndCleanList()
 columnToRead = 1
-exit = 1
-while exit == 1:
+exit = "no"
+while exit == "no":
     rowToRead = 0
-    numberOfOnes = 0
-    numberOfZeros = 0
+    numberOfOnesInThisColumn = 0
+    numberOfZerosInThisColumn = 0
     while rowToRead <= len(list) - 1:
         x = str(list[rowToRead])
         x = x[int(columnToRead) - 1:int(columnToRead)]
         if x == "1":
-            numberOfOnes = numberOfOnes + 1
+            numberOfOnesInThisColumn = numberOfOnesInThisColumn + 1
         else:
-            numberOfZeros = numberOfZeros + 1
+            numberOfZerosInThisColumn = numberOfZerosInThisColumn + 1
         rowToRead = rowToRead + 1
-    if numberOfOnes < numberOfZeros:
+    if numberOfOnesInThisColumn < numberOfZerosInThisColumn:
         remove_All_With_X_At_Y("0", columnToRead)
-    elif numberOfOnes > numberOfZeros:
+    elif numberOfOnesInThisColumn > numberOfZerosInThisColumn:
         remove_All_With_X_At_Y("1", columnToRead)
     else:
         remove_All_With_X_At_Y("1", columnToRead)
@@ -87,15 +92,14 @@ while exit == 1:
         columnToRead = 1
     else:
         columnToRead = columnToRead + 1
-        print("")
-        print(list)
+        #print("")
+        #print(list)
     if len(list) <= 1:
-        exit = 0
+        exit = "yes"
 csr = list[0]
 
 
 
 # prints output
-print(list)
 print("ogr rate: " + ogr)
 print("csr rate: " + csr)
