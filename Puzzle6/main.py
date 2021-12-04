@@ -18,11 +18,11 @@ def importAndCleanList():
         list[rowToRead] = x
         rowToRead = rowToRead + 1
 
-def removeAllStartingWith(aString):
+def remove_All_With_X_At_Y(aString, whichColumn):
     rowToRead = 0
     while rowToRead <= len(list) - 1:
         x = str(list[rowToRead])
-        x = x[0:1]
+        x = x[whichColumn - 1:whichColumn]
         if x == aString:
             list.pop(rowToRead)
         else:
@@ -31,38 +31,39 @@ def removeAllStartingWith(aString):
 
 # finds ogr
 importAndCleanList()
-lineToRead = 1
-exit = 1
-while exit == 1:
+columnToRead = 1
+exit = "no"
+while exit == "no":
     rowToRead = 0
     numberOfOnes = 0
     numberOfZeros = 0
     while rowToRead <= len(list) - 1:
         x = str(list[rowToRead])
-        x = x[int(lineToRead) - 1:int(lineToRead)]
+        x = x[int(columnToRead) - 1:int(columnToRead)]
         if x == "1":
             numberOfOnes = numberOfOnes + 1
         else:
             numberOfZeros = numberOfZeros + 1
         rowToRead = rowToRead + 1
     if numberOfOnes > numberOfZeros:
-        removeAllStartingWith("0")
+        remove_All_With_X_At_Y("0", columnToRead)
     elif numberOfOnes < numberOfZeros:
-        removeAllStartingWith("1")
+        remove_All_With_X_At_Y("1", columnToRead)
     else:
-        removeAllStartingWith("0")
-    if lineToRead > 12:
-        lineToRead = 1
+        remove_All_With_X_At_Y("0", columnToRead)
+    if columnToRead > 12:
+        columnToRead = 1
     else:
-        lineToRead = lineToRead + 1
-    print(len(list))
+        columnToRead = columnToRead + 1
+    print("")
+    print(list)
     if len(list) <= 1:
-        exit = 0
+        exit = "yes"
 ogr = list[0]
 
 # finds csr
 importAndCleanList()
-lineToRead = 1
+columnToRead = 1
 exit = 1
 while exit == 1:
     rowToRead = 0
@@ -70,23 +71,24 @@ while exit == 1:
     numberOfZeros = 0
     while rowToRead <= len(list) - 1:
         x = str(list[rowToRead])
-        x = x[int(lineToRead) - 1:int(lineToRead)]
+        x = x[int(columnToRead) - 1:int(columnToRead)]
         if x == "1":
             numberOfOnes = numberOfOnes + 1
         else:
             numberOfZeros = numberOfZeros + 1
         rowToRead = rowToRead + 1
     if numberOfOnes < numberOfZeros:
-        removeAllStartingWith("0")
+        remove_All_With_X_At_Y("0", columnToRead)
     elif numberOfOnes > numberOfZeros:
-        removeAllStartingWith("1")
+        remove_All_With_X_At_Y("1", columnToRead)
     else:
-        removeAllStartingWith("1")
-    if lineToRead > 12:
-        lineToRead = 1
+        remove_All_With_X_At_Y("1", columnToRead)
+    if columnToRead > 12:
+        columnToRead = 1
     else:
-        lineToRead = lineToRead + 1
-    print (len(list))
+        columnToRead = columnToRead + 1
+        print("")
+        print(list)
     if len(list) <= 1:
         exit = 0
 csr = list[0]
